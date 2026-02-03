@@ -49,12 +49,12 @@ spec:
                   key: {{ tpl .Values.postorius.secretKey.existingSecretKey . }}
             - name: MAILMAN_REST_URL
               value: {{ .Values.postorius.mailman.url }}
-            - name: MAILMAN_REST_API_USER
+            - name: MAILMAN_REST_USER
               valueFrom:
                 secretKeyRef:
                   name: {{ tpl .Values.postorius.mailman.apiUser.existingSecretName . }}
                   key: {{ tpl .Values.postorius.mailman.apiUser.existingSecretKey . }}
-            - name: MAILMAN_REST_API_PASS
+            - name: MAILMAN_REST_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ tpl .Values.postorius.mailman.apiPass.existingSecretName . }}
