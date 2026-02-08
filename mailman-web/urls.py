@@ -29,12 +29,13 @@ urlpatterns = [
     ),
     # Include alternate Postorius and HyperKitty URLs.
     path("postorius/", include("postorius.urls")),
-    path("hyperkitty/", include("hyperkitty.urls")),
     # Order counts for various links. Put the above first and the following
     # after so the suggested Apache config still works.
     path("mailman3/", include("postorius.urls")),
-    path("archives/", include("hyperkitty.urls")),
     path("", include("django_mailman3.urls")),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
+    # remove all archive urls
+    #path("hyperkitty/", include("hyperkitty.urls")),
+    #path("archives/", include("hyperkitty.urls")),
 ]
