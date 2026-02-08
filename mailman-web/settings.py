@@ -72,7 +72,7 @@ MAILMAN_ARCHIVER_FROM = (os.environ.get('MAILMAN_HOST_IP', gethostbyname(os.envi
 INSTALLED_APPS = []
 DEFAULT_APPS = [
     'whitenoise.runserver_nostatic',
-    'hyperkitty',
+    #'hyperkitty',
     'postorius',
     'django_mailman3',
     # Uncomment the next line to enable the admin:
@@ -139,7 +139,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django_mailman3.context_processors.common',
-                'hyperkitty.context_processors.common',
+                # 'hyperkitty.context_processors.common',
                 'postorius.context_processors.postorius',
             ],
         },
@@ -362,11 +362,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        'hyperkitty': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
+        #'hyperkitty': {
+        #    'handlers': ['file'],
+        #    'level': 'INFO',
+        #    'propagate': True,
+        #},
         'postorius': {
             'handlers': ['file'],
             'level': 'INFO',
