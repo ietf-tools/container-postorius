@@ -140,7 +140,7 @@ echo "Compiling locale files in $SITE_DIR"
 cd $SITE_DIR && /opt/mailman-web/manage.py compilemessages &&  cd -
 
 # Compress static files.
-python3 /opt/mailman-web/manage.py compress --force
+#python3 /opt/mailman-web/manage.py compress --force
 
 
 # Migrate all the data to the database if this is a new installation, otherwise

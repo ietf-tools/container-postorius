@@ -424,3 +424,9 @@ except ImportError:
 # Compatibility for older installs that override INSTALLED_APPS
 if not INSTALLED_APPS:
     INSTALLED_APPS = DEFAULT_APPS + MAILMAN_WEB_SOCIAL_AUTH
+
+INSTALLED_APPS.remove('hyperkitty')
+TEMPLATES[0]['OPTIONS']['context_processors'].remove(
+    'hyperkitty.context_processors.common')
+del LOGGING['loggers']['hyperkitty']
+

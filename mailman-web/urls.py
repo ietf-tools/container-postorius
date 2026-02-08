@@ -36,6 +36,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
     # remove all archive urls
-    path("hyperkitty/", include("hyperkitty.urls")),
+    #path("hyperkitty/", include("hyperkitty.urls")),
     #path("archives/", include("hyperkitty.urls")),
 ]
