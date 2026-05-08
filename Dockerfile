@@ -10,7 +10,8 @@ COPY requirements.txt /tmp/
 RUN --mount=type=cache,target=/root/.cache \
     set -ex \
 	&& apk add --no-cache --virtual .build-deps gcc libc-dev linux-headers \
-           postgresql-dev mariadb-dev mariadb-connector-c python3-dev libffi-dev openldap-dev cargo rust \
+           postgresql-dev mariadb-dev mariadb-connector-c python3-dev libffi-dev \
+           openldap-dev cargo rust git \
 	&& apk add --no-cache --virtual .mailman-rundeps bash sassc tzdata libldap \
 	   postgresql-client mysql-client py3-mysqlclient curl mailcap gettext \
 	   python3 py3-pip xapian-core xapian-bindings-python3 libffi pcre-dev py-cryptography \
