@@ -207,3 +207,5 @@ persistence:
   # -- Only mount a subpath of the Volume into the pod
   subPath: ""
 
+strategy:
+  type: Recreate
