@@ -43,7 +43,7 @@ ADMINS = (
      ('Mailman Suite Admin', 'root@localhost'),
 )
 
-SITE_ID = 1
+SITE_ID = int(os.environ.get('SITE_ID', 1))
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts
@@ -388,10 +388,8 @@ if os.environ.get('LOG_TO_CONSOLE') == 'yes':
     LOGGING['loggers']['django']['handlers'].append('console')
     LOGGING['loggers']['django.request']['handlers'].append('console')
 
-# HyperKitty-specific
-#
 # Only display mailing-lists from the same virtual host as the webserver
-FILTER_VHOST = False
+FILTER_VHOST = (os.environ.get('FILTER_VHOST', 'false').lower() == 'true')
 
 
 Q_CLUSTER = {

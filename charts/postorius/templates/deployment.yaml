@@ -80,6 +80,10 @@ spec:
               value: "{{ .Values.postorius.disableSignups }}"
             - name: SERVE_FROM_DOMAIN
               value: {{ .Values.postorius.hostname }}
+            - name: SITE_ID
+              value: "{{ .Values.postorius.siteId }}"
+            - name: FILTER_VHOST
+              value: "{{ .Values.postorius.filterVhost }}"
             {{- if .Values.postorius.smtpHost }}
             - name: SMTP_HOST
               value: {{ .Values.postorius.smtpHost }}
@@ -104,6 +108,13 @@ spec:
           emptyDir: {}
         {{- end }}
 
+      {{- with .Values.dnsPolicy }}
+      dnsPolicy: {{ . }}
+      {{- end }}
+      {{- with .Values.dnsConfig }}
+      dnsConfig:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

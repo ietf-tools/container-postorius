@@ -6,6 +6,8 @@ postorius:
   disableSignups: false
   hostname: lists.mydomain
   allowedHosts: pooter.slush.ca doof.slush.ca
+  siteId: 1
+  filterVhost: false
   dbUri:
     existingSecretName: db-app
     existingSecretKey: uri
@@ -189,6 +191,10 @@ volumeMounts: []
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true
+
+dnsPolicy: ""
+
+dnsConfig: {}
 
 nodeSelector: {}
 
