@@ -50,6 +50,8 @@ function check_or_create () {
 # END
 # }
 
+cat /dev/zero >/opt/mailman-web-data/settings_local.py
+
 # SMTP_HOST defaults to the gateway
 if [[ ! -v SMTP_HOST ]]; then
 	export SMTP_HOST=$(/sbin/ip route | awk '/default/ { print $3 }')
@@ -104,28 +106,29 @@ if [[ ! -e /opt/mailman-web-data/logs/uwsgi.log ]]; then
 	touch /opt/mailman-web-data/logs/uwsgi.log
 fi
 
-if [[ "${DISABLE_ALL_SIGNUPS}" != "false" ]]; then
-    echo "ACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
-fi
-
-if [[ "${DISABLE_SOCIAL_SIGNUPS}" != "false" ]]; then
-    echo "SOCIALACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSocialSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
-fi
-
-ALLOWED_HOST_ARRAY=('localhost' '127.0.0.1')
-
-if [[ -v ALLOWED_HOSTS ]]; then
-  for host in ${ALLOWED_HOSTS}; do
-      ALLOWED_HOST_ARRAY+=(${host})
-  done
-
-fi
-
-ALL_ALLOW_HOSTS=`join_array ", " "${ALLOWED_HOST_ARRAY[@]}"`
-
-echo "ALLOWED_HOSTS = [ ${ALL_ALLOW_HOSTS} ]" >>/opt/mailman-web-data/settings_local.py
 # Check if the settings_local.py file exists, if yes, copy it too.
 if [[ -e /opt/mailman-web-data/settings_local.py ]]; then
+        if [[ "${DISABLE_ALL_SIGNUPS}" != "false" ]]; then
+            echo "ACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSignupAdapter'" >/opt/mailman-web-data/settings_local.py
+        fi
+
+        if [[ "${DISABLE_SOCIAL_SIGNUPS}" != "false" ]]; then
+            echo "SOCIALACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSocialSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
+        fi
+
+        ALLOWED_HOST_ARRAY=('localhost' '127.0.0.1')
+
+        if [[ -v ALLOWED_HOSTS ]]; then
+          for host in ${ALLOWED_HOSTS}; do
+              ALLOWED_HOST_ARRAY+=(${host})
+          done
+
+        fi
+
+        ALL_ALLOW_HOSTS=`join_array ", " "${ALLOWED_HOST_ARRAY[@]}"`
+
+        echo "ALLOWED_HOSTS = [ ${ALL_ALLOW_HOSTS} ]" >>/opt/mailman-web-data/settings_local.py
+
 	echo "Copying settings_local.py ..."
 	cp /opt/mailman-web-data/settings_local.py /opt/mailman-web/settings_local.py
 	chown mailman:mailman /opt/mailman-web/settings_local.py
