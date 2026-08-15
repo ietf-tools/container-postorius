@@ -80,6 +80,10 @@ spec:
             - name: DISABLE_ALL_SIGNUPS
               value: "{{ .Values.postorius.disableSignups }}"
             {{- end }}
+            {{- if not .Values.postorius.disableSocialSignups }}
+            - name: DISABLE_SOCIAL_SIGNUPS
+              value: "{{ .Values.postorius.disableSocialSignups }}"
+            {{- end }}
             - name: SERVE_FROM_DOMAIN
               value: {{ .Values.postorius.hostname }}
             - name: SITE_ID
