@@ -97,13 +97,13 @@ DEFAULT_APPS = [
     'allauth.socialaccount',
 ]
 
-MAILMAN_WEB_SOCIAL_AUTH = [
-    'django_mailman3.lib.auth.fedora',
-    'allauth.socialaccount.providers.openid',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.gitlab',
-    'allauth.socialaccount.providers.google',
-]
+MAILMAN_WEB_SOCIAL_AUTH = []
+#    'django_mailman3.lib.auth.fedora',
+#    'allauth.socialaccount.providers.openid',
+#    'allauth.socialaccount.providers.github',
+#    'allauth.socialaccount.providers.gitlab',
+#    'allauth.socialaccount.providers.google',
+#]
 
 MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
