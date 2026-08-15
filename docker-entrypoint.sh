@@ -109,7 +109,7 @@ if [[ ${DISABLE_ALL_SIGNUPS} != "false" ]]; then
 fi
 
 if [[ ${DISABLE_SOCIAL_SIGNUPS} != "false" ]]; then
-    echo "SOCIALACCOUNT_ADAPTER = ‘django_mailman3.views.user_adapter.DisableSocialSignupAdapter’" >>/opt/mailman-web-data/settings_local.py
+    echo "SOCIALACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSocialSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
 fi
 
 ALLOWED_HOST_ARRAY=('localhost' '127.0.0.1')
