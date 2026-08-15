@@ -50,8 +50,6 @@ function check_or_create () {
 # END
 # }
 
-cat /dev/zero >/opt/mailman-web-data/settings_local.py
-
 # SMTP_HOST defaults to the gateway
 if [[ ! -v SMTP_HOST ]]; then
 	export SMTP_HOST=$(/sbin/ip route | awk '/default/ { print $3 }')
