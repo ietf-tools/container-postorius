@@ -104,11 +104,11 @@ if [[ ! -e /opt/mailman-web-data/logs/uwsgi.log ]]; then
 	touch /opt/mailman-web-data/logs/uwsgi.log
 fi
 
-if [[ ${DISABLE_ALL_SIGNUPS} != "false" ]]; then
+if [[ "${DISABLE_ALL_SIGNUPS}" != "false" ]]; then
     echo "ACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
 fi
 
-if [[ ${DISABLE_SOCIAL_SIGNUPS} != "false" ]]; then
+if [[ "${DISABLE_SOCIAL_SIGNUPS}" != "false" ]]; then
     echo "SOCIALACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSocialSignupAdapter'" >>/opt/mailman-web-data/settings_local.py
 fi
 
