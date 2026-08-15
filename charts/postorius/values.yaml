@@ -4,6 +4,7 @@ postorius:
     existingSecretName: postorius
     existingSecretKey: djangoSecretKey
   disableSignups: true
+  disableSocialSignups: true
   hostname: lists.mydomain
   allowedHosts: pooter.slush.ca doof.slush.ca
   siteId: 1
