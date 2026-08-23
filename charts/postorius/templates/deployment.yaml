@@ -94,6 +94,8 @@ spec:
             - name: SMTP_HOST
               value: {{ .Values.postorius.smtpHost }}
             {{- end }}
+            - name: POSTORIUS_TEMPLATE_BASE_URL
+              value: http://mailman:8001
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
