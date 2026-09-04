@@ -20,7 +20,7 @@ postorius:
     apiPass:
       existingSecretName: postorius
       existingSecretKey: mailmanApiPass
-    apiDebug: true
+    apiDebug: false
     hostname: mailman
     archiverFrom: 127.0.0.1
   smtpHost: ""
