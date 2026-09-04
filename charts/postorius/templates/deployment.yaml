@@ -72,8 +72,10 @@ spec:
               value: {{ .Values.postorius.mailman.hostname }}
             - name: MAILMAN_ARCHIVER_FROM
               value: {{ .Values.postorius.mailman.archiverFrom }}
+            {{- if .Values.postorius.mailman.apiDebug }}
             - name: MAILMAN_REST_DEBUG
               value: "{{ .Values.postorius.mailman.apiDebug }}"
+            {{- end }}
             - name: ALLOWED_HOSTS
               value: "{{ .Values.postorius.allowedHosts }}"
             {{- if not .Values.postorius.disableSignups }}
