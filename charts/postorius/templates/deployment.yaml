@@ -92,10 +92,28 @@ spec:
               value: "{{ .Values.postorius.siteId }}"
             - name: FILTER_VHOST
               value: "{{ .Values.postorius.filterVhost }}"
+            - name: SMTP_FROM_ADDR
+              value: "{{ .Values.postorius.smtpFromAddr }}"
             {{- if .Values.postorius.smtpHost }}
             - name: SMTP_HOST
               value: {{ .Values.postorius.smtpHost }}
             {{- end }}
+            - name: SMTP_PORT
+              value: "{{ .Values.postorius.smtpPort }}"
+            {{- if .Values.postorius.smtpAuth.enabled }}
+            - name: SMTP_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ tpl .Values.postorius.smtpAuth.user.existingSecretName . }}
+                  key: {{ tpl .Values.postorius.smtpAuth.user.existingSecretKey . }}
+            - name: SMTP_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ tpl .Values.postorius.smtpAuth.pass.existingSecretName . }}
+                  key: {{ tpl .Values.postorius.smtpAuth.pass.existingSecretKey . }}
+            {{- end }}
+            - name: SMTP_USE_TLS
+              value: "{{ .Values.postorius.smtpStartTLS }}"
             - name: POSTORIUS_TEMPLATE_BASE_URL
               value: http://mailman:8001
           ports:
