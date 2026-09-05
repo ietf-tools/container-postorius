@@ -23,7 +23,19 @@ postorius:
     apiDebug: false
     hostname: mailman
     archiverFrom: 127.0.0.1
+  smtpFromAddr: "support@test.com"
   smtpHost: ""
+  smtpPort: 25
+  smtpStartTLS: true
+  smtpAuth:
+    enabled: false
+    user:
+      existingSecretName: postorius
+      existingSecretKey: postoriusSmtpUser
+    pass:
+      existingSecretName: postorius
+      existingSecretKey: postoriusSmtpPass
+
 
 dbSecret:
   create: false
