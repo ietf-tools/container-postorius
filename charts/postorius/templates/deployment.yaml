@@ -115,7 +115,7 @@ spec:
             - name: SMTP_USE_TLS
               value: "{{ .Values.postorius.smtpStartTLS }}"
             - name: POSTORIUS_TEMPLATE_BASE_URL
-              value: http://mailman:8001
+              value: http://postorius:8000
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
