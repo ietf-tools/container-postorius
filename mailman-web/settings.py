@@ -402,4 +402,5 @@ INSTALLED_APPS.remove('hyperkitty')
 TEMPLATES[0]['OPTIONS']['context_processors'].remove(
     'hyperkitty.context_processors.common')
 del LOGGING['loggers']['hyperkitty']
+TEMPLATES[0]['DIRS'].append('/opt/mailman-web-data/templates')
 
