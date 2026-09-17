@@ -105,7 +105,7 @@ if [[ ! -e /opt/mailman-web-data/logs/uwsgi.log ]]; then
 fi
 
 # Check if the settings_local.py file exists, if yes, copy it too.
-if [[ -e /opt/mailman-web-data/settings_local.py ]]; then
+if [[ ! -e /opt/mailman-web-data/settings_local.py ]]; then
         if [[ "${DISABLE_ALL_SIGNUPS}" != "false" ]]; then
             echo "ACCOUNT_ADAPTER = 'django_mailman3.views.user_adapter.DisableSignupAdapter'" >/opt/mailman-web-data/settings_local.py
         fi
