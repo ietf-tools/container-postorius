@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   postorius:
   - apiVersion: v2
+    appVersion: 1.0.28
+    created: "2026-09-17T09:38:23.866545344Z"
+    description: IETF postorius deployment for kubernetes
+    digest: f4f04bbe4b68ec3af340b1e8121381e2942eef0e11a022b09ff7b6f90be18bcf
+    name: postorius
+    type: application
+    urls:
+    - https://github.com/ietf-tools/container-postorius/releases/download/postorius-1.0.28/postorius-1.0.28.tgz
+    version: 1.0.28
+  - apiVersion: v2
     appVersion: 1.0.27
     created: "2026-09-17T08:52:07.924244021Z"
     description: IETF postorius deployment for kubernetes
@@ -271,4 +281,4 @@ entries:
     urls:
     - https://github.com/ietf-tools/container-postorius/releases/download/postorius-1.0.0/postorius-1.0.0.tgz
     version: 1.0.0
-generated: "2026-09-17T08:52:07.924532977Z"
+generated: "2026-09-17T09:38:23.866659497Z"
