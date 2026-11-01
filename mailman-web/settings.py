@@ -325,8 +325,9 @@ LOGGING = {
         },
     },
     'loggers': {
+        # Propagates to the 'django' logger, which handles file and console.
         'django.request': {
-            'handlers': ['mail_admins', 'file'],
+            'handlers': ['mail_admins'],
             'level': 'INFO',
             'propagate': True,
         },
@@ -359,7 +360,7 @@ LOGGING = {
 
 if os.environ.get('LOG_TO_CONSOLE') == 'yes':
     LOGGING['loggers']['django']['handlers'].append('console')
-    LOGGING['loggers']['django.request']['handlers'].append('console')
+    LOGGING['loggers']['postorius']['handlers'].append('console')
 
 # Only display mailing-lists from the same virtual host as the webserver
 FILTER_VHOST = (os.environ.get('FILTER_VHOST', 'false').lower() == 'true')
