@@ -7,7 +7,13 @@ For more information on this file, see
 https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/wsgi/
 """
 
+import multiprocessing
 import os
+
+# Python 3.14 defaults to forkserver, which starts its resource tracker with
+# sys.executable. Under uWSGI that is the uwsgi binary, so the tracker dies when
+# django_q creates a Queue at import. uWSGI workers don't need forkserver.
+multiprocessing.set_start_method("fork")
 
 # import sys
 # import site

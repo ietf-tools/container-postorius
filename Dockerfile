@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.3
-FROM alpine:3.21.3
+FROM alpine:3.24.3
 
 # Add requirements file.
 COPY requirements.txt /tmp/
@@ -15,11 +15,10 @@ RUN --mount=type=cache,target=/root/.cache \
 	&& apk add --no-cache --virtual .mailman-rundeps bash sassc tzdata libldap \
 	   postgresql-client mysql-client py3-mysqlclient curl mailcap gettext \
 	   python3 py3-pip xapian-core xapian-bindings-python3 libffi pcre-dev py-cryptography \
-	&& python3 -m pip install --break-system-packages -U 'Django<4.3' pip setuptools wheel \
+	&& python3 -m pip install --break-system-packages -U 'Django>=5.2,<5.3' pip setuptools wheel \
 	&& pip install --break-system-packages -r /tmp/requirements.txt \
 		whoosh \
-		# later builds of uwsgi don't compile on aarch64
-		uwsgi==2.0.25 \
+		uwsgi==2.0.31 \
 		psycopg2 \
 		dj-database-url \
 		mysqlclient \
