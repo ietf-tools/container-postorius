@@ -5,11 +5,17 @@ name: Build multi arch Docker Image with separate Github Runners
 on:
   workflow_dispatch:
   push:
+    branches:
+      - "**"
     tags:
       - "*"
+    # GitHub only applies paths to branch pushes; tag pushes always build.
     paths:
       - 'Dockerfile'
-      - '.github/workflows/multi-build.yaml'
+      - 'requirements.txt'
+      - 'docker-entrypoint.sh'
+      - 'mailman-web/**'
+      - '.github/workflows/multi-build.yml'
 env:
   # The name of the Docker image to be built and pushed to GHCR
   # The image name is derived from the GitHub repository name and the GitHub Container Registry (GHCR) URL.
@@ -208,9 +214,13 @@ jobs:
           images: ${{ env.GHCR_IMAGE }}
           annotations: |
             type=org.opencontainers.image.description,value=${{ github.event.repository.description || 'No description provided' }}
+          # Don't let a tag build move `latest`, which the action does by default.
+          flavor: |
+            latest=false
+          # type=ref sanitizes branch names, since a slash isn't valid in an image tag.
           tags: |
-            type=raw,value=${{ github.ref_name }}
-#            type=raw,value=main,enable=${{ github.ref_name == 'main' }}
+            type=ref,event=branch
+            type=ref,event=tag
 #            type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
 
       - name: Set up Docker Buildx
