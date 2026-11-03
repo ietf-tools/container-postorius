@@ -46,6 +46,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: LOG_TO_CONSOLE
+              value: "yes"
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
